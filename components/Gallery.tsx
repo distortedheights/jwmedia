@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const GALLERY_IMAGES = [
-  { id: 1, title: 'Porträt', category: 'Portrait' },
-  { id: 2, title: 'Landschaft', category: 'Landscape' },
-  { id: 3, title: 'Event', category: 'Event' },
-  { id: 4, title: 'Produktfoto', category: 'Product' },
-  { id: 5, title: 'Hochzeit', category: 'Wedding' },
-  { id: 6, title: 'Natur', category: 'Nature' },
+  { id: 1, title: 'Porträt', category: 'Portrait', image: 'https://picsum.photos/600/600?random=1' },
+  { id: 2, title: 'Landschaft', category: 'Landscape', image: 'https://picsum.photos/600/600?random=2' },
+  { id: 3, title: 'Event', category: 'Event', image: 'https://picsum.photos/600/600?random=3' },
+  { id: 4, title: 'Produktfoto', category: 'Product', image: 'https://picsum.photos/600/600?random=4' },
+  { id: 5, title: 'Hochzeit', category: 'Wedding', image: 'https://picsum.photos/600/600?random=5' },
+  { id: 6, title: 'Natur', category: 'Nature', image: 'https://picsum.photos/600/600?random=6' },
 ];
 
 export default function Gallery() {
@@ -36,7 +37,11 @@ export default function Gallery() {
               onMouseLeave={() => setHoveredId(null)}
               className="relative h-80 bg-dark-accent rounded-lg overflow-hidden cursor-pointer group"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 group-hover:from-gray-600 group-hover:to-gray-800 transition-all duration-300" />
+              <img 
+                src={image.image} 
+                alt={image.title}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              />
               
               <motion.div
                 animate={{ opacity: hoveredId === image.id ? 1 : 0 }}
